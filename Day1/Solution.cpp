@@ -1,21 +1,33 @@
-#include <bits/stdc++.h>
+// Online C++ compiler to run C++ program online
 #include <iostream>
+#include <vector>
+#include <bits/stdc++.h>
 
 using namespace std;
+int main() {
+    // Write C++ code here
+    int a[] = {10,15,3,7};
+    int sum = 18, flag=0;
+    int n = sizeof(a) / sizeof(a[0]);
 
-bool twoSum(const vector<int>& nums, int target){
-  unordered_set<int> comps;
-  for (int num: nums){
-    if (comps.find(num) != comps.end()){
-      return true;
+    sort(a,a+n);
+    for(int i=0;i<a.size();i++){
+        cout<<a[i]<<" ";
     }
-    comps.insert(target-num);
-  }
-  return false;
-}
-
-int main(){
-  vector<int> nums{2, 7, 5, 11, -7, 6, -131};
-  int target = 1;
-  cout << twoSum(nums, target);
+    int high = a.size() -1;
+    int low= 0;
+    while(low<=high) {
+        int value= a[low] + a[high];
+        if(value == sum) {
+            flag=1;
+            cout<<"sum is present";break;
+        } else if(value<=sum) {
+            low++;
+        } else high--;
+    }
+    
+    if(flag ==0) {
+        cout<<"no such sum";
+    }
+    return 0;
 }
